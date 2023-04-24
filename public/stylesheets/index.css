@@ -1,0 +1,147 @@
+
+/* Set the font family for the entire page */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Style the navigation bar */
+nav {
+  padding: 0.5rem 0;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  color: #333;
+}
+
+/* Style the dropdown menu */
+.dropdown-menu {
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  color: #333;
+}
+
+.dropdown-divider {
+  border-top: 1px solid #e9ecef;
+}
+
+/* Style the signup and login buttons */
+.btn-outline-dark {
+  border-color: #343a40;
+  color: #343a40;
+}
+
+.btn-outline-dark:hover {
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* Style the header */
+header {
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+  padding: 3rem 0;
+}
+
+/* Style the product cards */
+.card {
+  border: none;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+}
+
+.card-body {
+  text-align: left;
+  overflow-y: auto;
+   max-height: 200px; 
+}
+
+.card-img-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+.card-body {
+  text-align: center;
+}
+
+.card-footer {
+  background-color: transparent;
+  border-top: none;
+  text-align: center;
+}
+
+/* Style the special item reviews */
+.text-warning {
+  font-size: 1.2rem;
+}
+
+.bi-star-fill {
+  color: #ffc107;
+}
+
+/* Style the section */
+section {
+  padding: 3rem 0;
+}
+
+/* Set a max-width for the content */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.col {
+  flex-basis: calc(33.33% - 20px); /* adjust the width based on your design */
+  margin: 10px; /* adjust the margin based on your design */
+}
+/* .col img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+} */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card h2 {
+  margin: 10px 0;
+}
+
+.card p {
+  text-align: center;
+}
+

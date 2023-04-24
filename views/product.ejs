@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/product.css" />
+    <title>Add Product</title>
+</head>
+<body>
+    <form action="/products/post-products" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required><br>
+        
+        <label for="image">Image:</label>
+        <input type="text" name="image" id="image" required><br>
+        
+        
+        <label for="brand">Brand:</label>
+        <input type="text" name="brand" id="brand" required><br>
+        
+        <label for="category">Category:</label>
+        <input type="text" name="category" id="category" required><br>
+        
+        <label for="description">Description:</label>
+        <input type="text" name="description" id="description" required><br>
+        
+        <label for="price">Price:</label>
+        <input type="text" name="price" id="price" required><br>
+        
+        <label for="countInStock">Count In Stock:</label>
+        <input type="number" name="countInStock" id="countInStock" required><br>
+        
+        <label for="rating">Rating:</label>
+        <input type="range" name="rating" id="rating" min="0" max="5"><br>
+        
+        <label for="numReview">NumReviews</label>
+        <input type="number" name="numReview" id="numReview" required><br>
+        
+        <button type="submit">Add Product</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/sign.css" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <div class="login-box">
+      <h2>Sign Up</h2>
+      <form method="POST" action="/users/signup">
+        <% if (locals.error) { %>
+          <% if (error === 'fullname is not allowed to be empty') { %>
+            <div class="error-message">
+              <%= error %>
+            </div>
+          <% } %>
+          <% if (error === 'username is not allowed to be empty') { %>
+            <div class="error-message">
+              <%= error %>
+            </div>
+          <% } %>
+          <% if (error === 'email is not allowed to be empty') { %>
+            <div class="error-message">
+              <%= error %>
+            </div>
+          <% } %>
+          <% if (error === 'confirm password does not match') { %>
+            <div class="error-message">
+              <%= error %>
+            </div>
+          <% } %>
+          <% if (error === 'gender is not allowed to be empty') { %>
+            <div class="error-message">
+              <%= error %>
+            </div>
+          <% } %>
+          <% if (error === 'phone is required') { %>
+            <div class="error-message">
+              <%= error %>
+            </div>
+          <% } %>
+          <% if (error === 'address is required') { %>
+            <div class="error-message">
+              <%= error %>
+            </div>
+          <% } %>
+        <% } %>
+        <div class="user-box">
+          <input type="text" name="fullname"  />
+          <label>Full Name</label>
+        </div>
+        <div class="user-box">
+          <input type="text" name="username"  />
+          <label>Username</label>
+        </div>
+        <div class="user-box">
+          <% if(locals.error){ %>
+            <% if(error === 'email is not allowed to be empty'){ %>
+
+            <div style="
+            color: #ff0099;
+            margin: 10px 2px;
+            font-size: 0.8em;
+            font-weight: bold;
+            "><%= error%></div>
+           <% } %>
+
+        <% } %>
+
+
+        <% if(locals.error){ %>
+            <div style="
+            color: #ff0099;
+            margin: 10px 2px;
+            font-size: 0.8em;
+            font-weight: bold;
+            ">Email already exist please change</div>
+
+        <% } %>
+          <input type="email" name="email"/>
+          <label>Email</label>
+        </div>
+        <div class="user-box">
+          <input type="password" name="password"/>
+          <label>Password</label>
+        </div>
+        <div class="user-box">
+          <% if(locals.error){ %>
+            <% if(error === "confirm password does not match"){ %>
+
+            <div style="
+            color: #ff0099;
+            margin: 10px 2px;
+            font-size: 0.8em;
+            font-weight: bold;
+            ">Confirm password does not match</div>
+           <% } %>
+
+        <% } %>
+          <input type="password" name="confirm_password" />
+          <label>Confirm Password</label>
+        </div>
+        <div class="user-box">
+          <input type="text" name="gender"/>
+          <label>Gender</label>
+        </div>
+        <div class="user-box">
+          <input type="text" name="phone"/>
+          <label>Phone Number</label>
+        </div>
+        <div class="user-box">
+          <input type="text" name="address"/>
+          <label>Address</label>
+        </div>
+          <a href="#">
+      
+          <button type="submit">Submit</button>
+        </a>
+     
+      </form>
+      
+      <small class="small-text">
+        Go back to <a class="small-a" href="/landing">Home</a>
+      </small>
+    </div>
+  </body>
+</html>

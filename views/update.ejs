@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/product.css" />
+    <title>Update Product</title>
+</head>
+<body>
+    <form action="/products/update-products" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value=""><br>
+        <label for="Image:">Image</label>
+        <input type="text" name="image" id="image" value="" > <br>
+        <label for="brand">Brand:</label>
+        <input type="text" name="brand" id="brand" value=""><br>
+        <label for="category">Category:</label>
+        <input type="text" name="category" id="category" value=""><br>
+        <label for="description">Description:</label>
+        <input type="text" name="description" id="description" value=""><br>
+        <label for="price">Price:</label>
+        <input type="text" name="price" id="price" value=""><br>
+        <label for="countInStock">Count In Stock:</label>
+        <input type="number" name ="countInStock" id="countInStock" value="" ><br>
+        <label for="rating">Rating:</label>
+        <input type="range" name="rating" id="rating" min="0" max="5"><br>
+        <label for="numReviews">NumReviews</label>
+        <input type="number" name="numReviews" id="numReviews" value=""><br>
+        <button type="submit">Update Product</button>
+    </form>
+</body>
+</html>
