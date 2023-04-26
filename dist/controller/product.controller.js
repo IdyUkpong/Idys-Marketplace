@@ -13,13 +13,12 @@ const createProducts = async (req, res) => {
     try {
         // console.log(req);
         const verified = req.user;
+        console_1.default.log(verified);
         const validationResult = uttils_1.createProductSchema.validate(req.body, uttils_1.options);
         if (validationResult.error) {
             return res.render("product", {
                 error: validationResult.error.details[0].message,
             });
-            //return res
-            //.status(200).json({ error: validationResult.error.details[0].message })
         }
         const allproduct = new product_1.Products({
             name: req.body.name,
@@ -34,10 +33,7 @@ const createProducts = async (req, res) => {
             userId: verified.userId,
         });
         await allproduct.save();
-        //    console.log(prod,"products");
-        // console.log(allproduct)
         return res.redirect("/dashboard");
-        //res.status(201).json({ msg: "product created successfully", allproduct });
     }
     catch (error) {
         console_1.default.log(error);
@@ -68,34 +64,28 @@ const getProducts = async (req, res) => {
     }
 };
 exports.getProducts = getProducts;
-//Put product
+//Update product
 const updateProduct = async (req, res) => {
     try {
         const id = req.params.id;
         const { price, countInStock, rating, numReview } = req.body;
         const validationResult = uttils_1.updateProductSchema.validate(req.body, uttils_1.options);
         if (validationResult.error) {
-            // return res
-            //   .status(400)
-            //   .json({ Error: validationResult.error.details[0].message });
-            return res.redirect("/dashboard");
+            console_1.default.log(validationResult.error.details[0].message);
+            const product = await product_1.Products.findOne({ _id: id }).exec();
+            res.render("update", { error: validationResult.error.details[0].message, product: product });
         }
-        const updateProduct = await product_1.Products.findById(id);
-        if (!updateProduct) {
-            // res.status(400).send(`Can't find product with Id: ${req.params.id}`);
-            return res.render("update");
+        else {
+            const prod = await product_1.Products.findOne({ _id: id });
+            const Id = prod?._id;
+            await product_1.Products.findOneAndUpdate({ _id: Id }, {
+                price: price,
+                countInStock: countInStock,
+                rating: rating,
+                numReview: numReview,
+            });
+            res.redirect("/dashboard");
         }
-        const foundProduct = await updateProduct?.updateOne({
-            price,
-            countInStock,
-            rating,
-            numReview,
-        });
-        // return res.status(200).send({
-        //   msg: "Products updated successfully",
-        //   updateProduct,
-        // });
-        return res.redirect("/dashboard");
     }
     catch (error) {
         console_1.default.log(error);
@@ -106,11 +96,8 @@ const deleteProduct = async (req, res) => {
     try {
         const id = req.params.id;
         console_1.default.log(id);
-        const deletedProduct = await product_1.Products.findByIdAndDelete({ _id: id });
-        // res
-        //   .status(200)
-        //   .send({ msg: "Product deleted successfully"});
-        return res.redirect("/dashboard");
+        await product_1.Products.findByIdAndDelete({ _id: id });
+        res.redirect("/dashboard");
     }
     catch (error) {
         console_1.default.log(error);

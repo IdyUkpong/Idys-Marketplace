@@ -80,7 +80,7 @@
       <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
           <h1 class="display-4 fw-bolder">
-              Welcome <%=user.name%>
+              Welcome <%= users.fullname %>
           </h1>
           <p class="lead fw-normal text-white-50 mb-0">
             Your one stop shop to every product you need.
@@ -124,7 +124,7 @@
                 <!-- Product actions-->
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                   <div class="text-center">
-                    <a class="btn btn-outline-dark mt-auto" href="products/update-products"><button type="submit">Update</button></a>
+                    <a class="btn btn-outline-dark mt-auto" href="products/update-products/<%= product._id %>"><button type="submit">Update</button></a>
                   </div>
                   <div class="text-center">
                     <a class="btn btn-outline-dark mt-auto" href="products/delete-products/<%= product._id %>"><button type="submit">Delete</button></a>

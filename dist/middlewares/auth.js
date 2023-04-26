@@ -12,7 +12,6 @@ const auth = (req, res, next) => {
         req.authenticated = true;
         req.status = 403;
         return res.render('login', { error: 'Please login as a user' });
-        // return  res.status(400).json( {error: 'Please login as a user'})
     }
     else {
         let validator = jsonwebtoken_1.default.verify(token, jwtsecret);
@@ -23,7 +22,6 @@ const auth = (req, res, next) => {
         else {
             req.status = 403;
             return res.render('login', { error: 'Invalid token' });
-            //return res.status(400).json( {error: 'Invalid token'})
         }
     }
 };

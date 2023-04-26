@@ -56,7 +56,6 @@ export const createProductSchema = joi.object().keys({
 });
 
 //update
-
 export const updateProductSchema = joi.object().keys({
   price: joi.number(),
   countInStock: joi.number(),

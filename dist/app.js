@@ -48,10 +48,7 @@ mongoose_1.default.connect(process.env.CLUSTER || "string").then(response => {
 });
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-// app.post("/login", (req: Request, res: Response) => {
-//  // console.log(req.body);
-//   return res.send("");
-// });
+;
 // view engine setup
 app.set("views", path_1.default.join(__dirname, "../views"));
 app.set("view engine", "ejs");
@@ -64,7 +61,6 @@ app.use(express_1.default.static(path_1.default.join(__dirname, "../public")));
 app.use("/products", products_1.default);
 app.use("/users", users_1.default);
 app.use('/', page_1.default);
-//app.use("/product", productRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next((0, http_errors_1.default)(404));

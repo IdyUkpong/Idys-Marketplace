@@ -17,13 +17,13 @@ describe('User Model Test Suite', () => {
   test('should validate saving a new student user successfully', async () => {
     const validStudentUser = new User({
       local: fakeUserData,
-      role: fakeUserData.role,
+      fullname: fakeUserData.fullname,
     });
     const savedStudentUser = await validStudentUser.save();
 
     validateNotEmpty(savedStudentUser);
 
-    validateStringEquality(savedStudentUser.role, fakeUserData.role);
+    validateStringEquality(savedStudentUser.fullname, fakeUserData.fullname);
     validateStringEquality(savedStudentUser.local.email, fakeUserData.email);
     validateStringEquality(
       savedStudentUser.local.username,
@@ -47,7 +47,7 @@ describe('User Model Test Suite', () => {
     expect.assertions(4);
     const validStudentUser = new User({
       local: fakeUserData,
-      role: fakeUserData.role,
+      fullname: fakeUserData.fullname,
     });
 
     try {

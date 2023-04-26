@@ -12,6 +12,8 @@ dotenv.config()
 
 import productsRouter from "./routes/products";
 import usersRouter from "./routes/users";
+import homePage from "./routes/page";
+//import productRouter from './routes/product'
 const cors = require("cors");
 
 
@@ -28,6 +30,7 @@ const app = express();
 
 app.use(express.json());
 
+;
 
 // view engine setup
 app.set("views", path.join(__dirname, "../views"));

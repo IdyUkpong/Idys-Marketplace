@@ -34,13 +34,11 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
 const jwtsecret = process.env.JWT_SECRET;
-/* EJS */
 const signupUser = async (req, res) => {
     try {
         const { fullname, username, email, password, confirm_password, gender, phone, address, } = req.body;
         const validationResult = uttils_1.registerUserSchema.validate(req.body, uttils_1.options);
         if (validationResult.error) {
-            //res.render("signup", {
             return res.status(200).json({
                 error: validationResult.error.details[0].message,
             });
@@ -61,10 +59,8 @@ const signupUser = async (req, res) => {
             });
             await newUser.save();
             return res.render("login");
-            //return res.status(200).json({msg:"signup successful", newUser})
         }
         return res.render("signup", { error: "Email already exists" });
-        //return res.status(200).json({ error: "Email already exists" });
     }
     catch (err) {
         console.log(err);
@@ -77,34 +73,29 @@ const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
         const existingUser = await users_1.UserInstance.findOne({
-            email
+            email,
         });
         const { _id } = existingUser;
-        //console.log(jwtsecret)
         const token = jsonwebtoken_1.default.sign({ userId: _id }, jwtsecret);
-        //console.log(token);
         res.cookie("token", token, {
             httpOnly: true,
             maxAge: 30 * 24 * 60 * 60 * 1000,
         });
         const cookies = req.cookies["token"];
-        //console.log(cookies)
         if (cookies) {
             const validationResult = uttils_1.loginUserSchema.validate(req.body, uttils_1.options);
             if (validationResult.error) {
-                return res.render("login", { error: validationResult.error.details[0].message });
-                // res.status(200).json( { error: validationResult.error.details[0].message });
+                return res.render("login", {
+                    error: validationResult.error.details[0].message,
+                });
             }
-            //generate token for user
             bcryptjs_1.default.compare(password, existingUser?.password || "").then((match) => {
                 if (match) {
                     return res.redirect("/dashboard");
-                    // return res.status(200).json({msg:"dashboard",existingUser, token });
                 }
                 else {
                     const err = "Invalid Email/Password";
                     return res.render("login", { error: err });
-                    // return  res.status(200).json( { error: err });
                 }
             });
         }
@@ -118,7 +109,7 @@ exports.loginUser = loginUser;
 //get userandProduct
 const getUserAndProduct = async (req, res) => {
     try {
-        const getAllUsers = await users_1.UserInstance.find().populate('products');
+        const getAllUsers = await users_1.UserInstance.find().populate("products");
         res.status(200).send({
             msg: "All Products retrieved successfully",
             count: getAllUsers.length,
@@ -133,7 +124,6 @@ const getUserAndProduct = async (req, res) => {
 exports.getUserAndProduct = getUserAndProduct;
 const logOut = async (req, res) => {
     res.clearCookie("token");
-    // next();
     return res.redirect("/");
 };
 exports.logOut = logOut;

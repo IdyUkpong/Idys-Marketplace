@@ -47,15 +47,17 @@ export const signupUser = async (req: Request, res: Response) => {
 
       await newUser.save();
       return res.render("login");
+     
     }
     return res.render("signup", { error: "Email already exists" });
+   
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-//login
+// //login
 export const loginUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
@@ -66,13 +68,17 @@ export const loginUser = async (req: Request, res: Response) => {
 
     const { _id } = existingUser as unknown as { [key: string]: string };
 
+  
+
     const token = jwt.sign({ userId: _id }, jwtsecret!);
+  
 
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
     const cookies = req.cookies["token"];
+  
 
     if (cookies) {
       const validationResult = loginUserSchema.validate(req.body, options);
@@ -81,15 +87,18 @@ export const loginUser = async (req: Request, res: Response) => {
         return res.render("login", {
           error: validationResult.error.details[0].message,
         });
+     
       }
 
-      //generate token for user
+     
       bcrypt.compare(password, existingUser?.password || "").then((match) => {
         if (match) {
           return res.redirect("/dashboard");
+      
         } else {
           const err = "Invalid Email/Password";
           return res.render("login", { error: err });
+       
         }
       });
     }

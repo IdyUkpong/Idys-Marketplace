@@ -8,25 +8,19 @@
     <title>Update Product</title>
 </head>
 <body>
-    <form action="/products/update-products" method="post">
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" value=""><br>
-        <label for="Image:">Image</label>
-        <input type="text" name="image" id="image" value="" > <br>
-        <label for="brand">Brand:</label>
-        <input type="text" name="brand" id="brand" value=""><br>
-        <label for="category">Category:</label>
-        <input type="text" name="category" id="category" value=""><br>
-        <label for="description">Description:</label>
-        <input type="text" name="description" id="description" value=""><br>
+    <% if (error) { %>
+     <%= error %>
+    <% } %>
+    <form action="/products/update-products/<%= product.id %>" method="post">
+     
         <label for="price">Price:</label>
-        <input type="text" name="price" id="price" value=""><br>
+        <input type="text" name="price" id="price" value="<%= product.price %>"><br>
         <label for="countInStock">Count In Stock:</label>
-        <input type="number" name ="countInStock" id="countInStock" value="" ><br>
+        <input type="number" name ="countInStock" id="countInStock" value="<%= product.countInStock %>" ><br>
         <label for="rating">Rating:</label>
         <input type="range" name="rating" id="rating" min="0" max="5"><br>
         <label for="numReviews">NumReviews</label>
-        <input type="number" name="numReviews" id="numReviews" value=""><br>
+        <input type="number" name="numReview" id="numReviews" value="<%= product.numReview %>"><br>
         <button type="submit">Update Product</button>
     </form>
 </body>

@@ -24,7 +24,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Products = exports.ProductsSchema = void 0;
-//import { Sequelize } from "sequelize";
 const mongoose_1 = __importStar(require("mongoose"));
 exports.ProductsSchema = new mongoose_1.default.Schema({
     userId: mongoose_1.Schema.Types.ObjectId,

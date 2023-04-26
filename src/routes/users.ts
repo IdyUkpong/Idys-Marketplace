@@ -1,7 +1,6 @@
 import express from "express";
 import { Request, Response } from "express";
-//import { getUserAndProduct } from "express";
-import {auth} from "../middlewares/auth"
+
 
 import {
   signupUser,

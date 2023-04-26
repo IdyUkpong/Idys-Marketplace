@@ -45,13 +45,3 @@ const userSchema = new mongoose_1.default.Schema({
     }
 });
 exports.UserInstance = mongoose_1.default.model("User", userSchema);
-// UserInstance.hasMany(ProductsSchema, {
-//   foreignField: "userId",
-//   localField: "_id",
-//   ref: "Product",
-// });
-// ProductsSchema.belongsTo(UserInstance, {
-//   foreignField: "userId",
-//   localField: "_id",
-//   ref: "User",
-// });

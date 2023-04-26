@@ -39,7 +39,7 @@ const jwtsecret = process.env.JWT_SECRET;
 //page
 router.get("/landing", async (req, res, next) => {
     try {
-        const products = await product_1.Products.find().limit(15);
+        const products = await product_1.Products.find().limit(50);
         console.log(products);
         res.render('landing', { products: products });
     }
@@ -56,7 +56,6 @@ router.get("/login", (req, res, next) => {
 router.get("/dashboard", auth_1.auth, async (req, res) => {
     try {
         const cookie = req.cookies['token'];
-        //console.log(cookie)
         if (!cookie) {
             res.render('login');
         }
@@ -67,13 +66,11 @@ router.get("/dashboard", auth_1.auth, async (req, res) => {
                 }
                 else {
                     const { fullname, username, email, password, confirm_password, gender, phone, address, userId } = req.body;
-                    const user = await users_1.UserInstance.find({ name: req.body.fullname });
                     const Id = data.userId;
-                    console.log(Id);
+                    const user = await users_1.UserInstance.findOne({ _id: Id }).exec();
                     const products = await product_1.Products.find({ userId: Id });
-                    // console.log(products)
                     if (products) {
-                        res.render('dashboard', { products: products, user });
+                        res.render('dashboard', { products: products, users: user });
                     }
                     else {
                         res.render('dashboard', { products: 'No product added yet', user });
@@ -81,7 +78,6 @@ router.get("/dashboard", auth_1.auth, async (req, res) => {
                 }
             });
         }
-        //console.log(allproduct);
     }
     catch (err) {
         console.log(err);
