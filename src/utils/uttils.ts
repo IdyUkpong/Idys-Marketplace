@@ -7,7 +7,7 @@ export const registerUserSchema = joi.object().keys({
   email: joi.string().required(),
   password: joi
     .string()
-    .regex(/^[a-zA-Z0-9]{6,18}$/)
+    .regex(/^\d{4,18}$/)
     .required(),
   confirm_password: joi
     .any()
